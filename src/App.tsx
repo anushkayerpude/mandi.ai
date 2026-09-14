@@ -9,12 +9,14 @@ import { TimeCurveChart } from './components/Vendor/TimeCurveChart';
 import { StabilityDeepDiveModal } from './components/Vendor/StabilityDeepDiveModal';
 import { LearningLoopModal } from './components/Vendor/LearningLoopModal';
 import { MunicipalDashboard } from './components/Municipal/MunicipalDashboard';
+import { LandingPage } from './components/Landing/LandingPage';
 import { AppMode, Language, VendorQuery, DailySalesLog, WardLocation } from './types';
 import { rankVendingLocations } from './engines/opportunityEngine';
 import { AHMEDABAD_WARDS } from './data/ahmedabadWards';
 import { RotateCw } from 'lucide-react';
 
 export const App: React.FC = () => {
+  const [showLanding, setShowLanding] = useState<boolean>(true);
   const [mode, setMode] = useState<AppMode>('vendor');
   const [lang, setLang] = useState<Language>('en');
 
@@ -57,14 +59,19 @@ export const App: React.FC = () => {
     setSalesLogs((prev) => [log, ...prev]);
   };
 
+  if (showLanding) {
+    return <LandingPage onEnterApp={() => setShowLanding(false)} />;
+  }
+
   return (
-    <div className="min-h-screen bg-khaki-100 text-stone-900 flex flex-col font-sans">
+    <div className="min-h-screen bg-[#f4efe6] text-stone-900 flex flex-col font-sans">
       {/* Top Sticky Navigation Bar */}
       <Navbar
         mode={mode}
         onModeChange={setMode}
         lang={lang}
         onLangChange={setLang}
+        onGoLanding={() => setShowLanding(true)}
       />
 
       {/* Main Content Area */}
