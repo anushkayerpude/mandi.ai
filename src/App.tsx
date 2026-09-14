@@ -9,11 +9,10 @@ import { TimeCurveChart } from './components/Vendor/TimeCurveChart';
 import { StabilityDeepDiveModal } from './components/Vendor/StabilityDeepDiveModal';
 import { LearningLoopModal } from './components/Vendor/LearningLoopModal';
 import { MunicipalDashboard } from './components/Municipal/MunicipalDashboard';
-import { AppMode, Language, VendorQuery, LocationRecommendation, DailySalesLog, WardLocation } from './types';
+import { AppMode, Language, VendorQuery, DailySalesLog, WardLocation } from './types';
 import { rankVendingLocations } from './engines/opportunityEngine';
 import { AHMEDABAD_WARDS } from './data/ahmedabadWards';
-import { Sparkles, RotateCw, ShieldCheck, Heart } from 'lucide-react';
-import { getTranslation } from './utils/i18n';
+import { RotateCw } from 'lucide-react';
 
 export const App: React.FC = () => {
   const [mode, setMode] = useState<AppMode>('vendor');
@@ -48,9 +47,7 @@ export const App: React.FC = () => {
   const [isNavigating, setIsNavigating] = useState<boolean>(false);
   const [isStabilityModalOpen, setIsStabilityModalOpen] = useState<boolean>(false);
   const [isLearningModalOpen, setIsLearningModalOpen] = useState<boolean>(false);
-  const [salesLogs, setSalesLogs] = useState<DailySalesLog[]>([]);
-
-  const t = getTranslation(lang);
+  const [, setSalesLogs] = useState<DailySalesLog[]>([]);
 
   const handleSelectWard = (ward: WardLocation) => {
     setSelectedWardId(ward.id);
@@ -61,7 +58,7 @@ export const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#070b13] text-slate-100 flex flex-col font-sans">
+    <div className="min-h-screen bg-khaki-100 text-stone-900 flex flex-col font-sans">
       {/* Top Sticky Navigation Bar */}
       <Navbar
         mode={mode}
@@ -126,16 +123,16 @@ export const App: React.FC = () => {
               />
 
               {/* 6. Vendor Learning Loop Action Banner */}
-              <div className="glass-panel p-4 rounded-3xl border border-mandi-500/20 shadow-xl flex items-center justify-between gap-4 bg-gradient-to-r from-slate-900 via-mandi-950/40 to-slate-900">
+              <div className="glass-panel p-4 rounded-3xl border border-khaki-300 shadow-sm flex items-center justify-between gap-4 bg-khaki-50">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-2xl bg-mandi-500/20 text-mandi-400 border border-mandi-500/40 flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-2xl bg-mandi-100 text-mandi-700 border border-mandi-300 flex items-center justify-center">
                     <RotateCw className="w-5 h-5" />
                   </div>
                   <div>
-                    <h4 className="text-sm font-bold text-white leading-tight">
+                    <h4 className="text-sm font-bold text-stone-900 leading-tight">
                       Finished Selling for the Day?
                     </h4>
-                    <p className="text-[11px] text-slate-400">
+                    <p className="text-[11px] text-stone-600 font-medium">
                       Log your revenue to boost tomorrow’s AI demand accuracy.
                     </p>
                   </div>
@@ -143,7 +140,7 @@ export const App: React.FC = () => {
 
                 <button
                   onClick={() => setIsLearningModalOpen(true)}
-                  className="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs border border-white/10 shrink-0 transition"
+                  className="px-4 py-2 rounded-xl bg-khaki-200 hover:bg-khaki-300 text-stone-900 font-bold text-xs border border-khaki-300 shrink-0 transition shadow-sm"
                 >
                   Log Result
                 </button>
@@ -207,15 +204,15 @@ export const App: React.FC = () => {
       )}
 
       {/* Footer */}
-      <footer className="border-t border-white/10 glass-panel mt-12 py-5 px-4 sm:px-6 text-center text-xs text-slate-400">
+      <footer className="border-t border-khaki-300 bg-khaki-150 mt-12 py-5 px-4 sm:px-6 text-center text-xs text-stone-600">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
-          <div className="flex items-center gap-2 font-semibold text-slate-300">
+          <div className="flex items-center gap-2 font-bold text-stone-800">
             <span>🥬 Mandi.ai</span>
             <span>•</span>
             <span>Empowering Ahmedabad’s Street Vendors with Geospatial AI</span>
           </div>
 
-          <p className="text-[11px] text-slate-500">
+          <p className="text-[11px] text-stone-500 font-medium">
             Compliant with Ahmedabad Municipal Corporation (AMC) Vending Regulations & National Urban Livelihoods Mission (NULM).
           </p>
         </div>

@@ -46,23 +46,23 @@ export const RecommendationHero: React.FC<RecommendationHeroProps> = ({
   };
 
   return (
-    <div className="glass-card-glow p-5 sm:p-6 rounded-3xl border border-mandi-500/30 shadow-2xl relative overflow-hidden">
+    <div className="glass-card-glow p-5 sm:p-6 rounded-3xl border-2 border-mandi-500 shadow-md relative overflow-hidden bg-khaki-50">
       {/* Top Banner Tag */}
-      <div className="flex flex-wrap items-center justify-between gap-2 mb-4 pb-3 border-b border-white/10">
+      <div className="flex flex-wrap items-center justify-between gap-2 mb-4 pb-3 border-b border-khaki-300">
         <div className="flex items-center gap-2">
-          <span className="w-7 h-7 rounded-lg bg-mandi-500/20 text-mandi-300 border border-mandi-500/30 flex items-center justify-center font-bold text-sm">
+          <span className="w-8 h-8 rounded-xl bg-mandi-100 text-mandi-700 border border-mandi-300 flex items-center justify-center font-bold text-sm">
             🏆
           </span>
           <div>
-            <span className="text-[10px] uppercase font-bold tracking-widest text-mandi-400">
+            <span className="text-[10px] uppercase font-bold tracking-widest text-mandi-700">
               {t.bestRecommendation}
             </span>
             <div className="flex items-center gap-1.5">
-              <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight flex items-center gap-1">
-                <MapPin className="w-5 h-5 text-mandi-400" />
+              <h3 className="text-xl sm:text-2xl font-black text-stone-900 tracking-tight flex items-center gap-1">
+                <MapPin className="w-5 h-5 text-mandi-600" />
                 {displayName}
               </h3>
-              <span className="text-xs text-slate-400 font-medium">
+              <span className="text-xs text-stone-600 font-semibold">
                 ({loc.zone} Zone)
               </span>
             </div>
@@ -70,14 +70,14 @@ export const RecommendationHero: React.FC<RecommendationHeroProps> = ({
         </div>
 
         {/* Opportunity Score Pill */}
-        <div className="flex items-center gap-2 bg-gradient-to-br from-mandi-500/25 to-emerald-500/10 px-3.5 py-1.5 rounded-2xl border border-mandi-500/40">
-          <Award className="w-5 h-5 text-mandi-400" />
+        <div className="flex items-center gap-2.5 bg-khaki-200 px-3.5 py-1.5 rounded-2xl border border-khaki-400 shadow-sm">
+          <Award className="w-5 h-5 text-mandi-600" />
           <div className="text-right">
-            <div className="text-[10px] uppercase font-bold text-mandi-300">
+            <div className="text-[10px] uppercase font-bold text-stone-700">
               {t.opportunity}
             </div>
-            <div className="text-xl sm:text-2xl font-black text-white leading-none">
-              {recommendation.opportunityScore}<span className="text-xs text-slate-400">/100</span>
+            <div className="text-xl sm:text-2xl font-black text-stone-900 leading-none">
+              {recommendation.opportunityScore}<span className="text-xs text-stone-500">/100</span>
             </div>
           </div>
         </div>
@@ -86,47 +86,47 @@ export const RecommendationHero: React.FC<RecommendationHeroProps> = ({
       {/* 4 Core Signals Grid */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 mb-5">
         {/* Signal 1: Best Selling Window */}
-        <div className="bg-slate-900/70 p-3 rounded-2xl border border-white/5">
-          <div className="flex items-center gap-1.5 text-xs text-amber-400 font-semibold mb-1">
-            <Clock className="w-3.5 h-3.5" />
+        <div className="bg-khaki-100/90 p-3 rounded-2xl border border-khaki-300 shadow-sm">
+          <div className="flex items-center gap-1.5 text-xs text-amber-800 font-bold mb-1">
+            <Clock className="w-3.5 h-3.5 text-amber-700" />
             <span>{t.bestSellingTime}</span>
           </div>
-          <p className="text-sm sm:text-base font-bold text-slate-100">
+          <p className="text-sm sm:text-base font-extrabold text-stone-900">
             {recommendation.bestSellingWindow}
           </p>
         </div>
 
         {/* Signal 2: Hyperlocal Demand */}
-        <div className="bg-slate-900/70 p-3 rounded-2xl border border-white/5">
-          <div className="flex items-center gap-1.5 text-xs text-emerald-400 font-semibold mb-1">
-            <TrendingUp className="w-3.5 h-3.5" />
+        <div className="bg-khaki-100/90 p-3 rounded-2xl border border-khaki-300 shadow-sm">
+          <div className="flex items-center gap-1.5 text-xs text-mandi-700 font-bold mb-1">
+            <TrendingUp className="w-3.5 h-3.5 text-mandi-600" />
             <span>{t.demand}</span>
           </div>
           <div className="flex items-baseline gap-1">
-            <span className="text-base sm:text-lg font-black text-white">
+            <span className="text-base sm:text-lg font-black text-stone-900">
               {recommendation.demandScore}
             </span>
-            <span className="text-[10px] uppercase font-bold text-emerald-400">HIGH</span>
+            <span className="text-[10px] uppercase font-extrabold text-mandi-700">HIGH</span>
           </div>
         </div>
 
         {/* Signal 3: Competition */}
-        <div className="bg-slate-900/70 p-3 rounded-2xl border border-white/5">
-          <div className="flex items-center gap-1.5 text-xs text-blue-400 font-semibold mb-1">
-            <ShoppingBag className="w-3.5 h-3.5" />
+        <div className="bg-khaki-100/90 p-3 rounded-2xl border border-khaki-300 shadow-sm">
+          <div className="flex items-center gap-1.5 text-xs text-blue-800 font-bold mb-1">
+            <ShoppingBag className="w-3.5 h-3.5 text-blue-700" />
             <span>{t.competition}</span>
           </div>
           <div className="flex items-baseline gap-1">
             <span className={`text-base sm:text-lg font-black ${
               recommendation.competitionLevel === 'LOW'
-                ? 'text-emerald-400'
+                ? 'text-mandi-700'
                 : recommendation.competitionLevel === 'MEDIUM'
-                ? 'text-amber-400'
-                : 'text-rose-400'
+                ? 'text-amber-700'
+                : 'text-chilli-600'
             }`}>
               {recommendation.competitionLevel}
             </span>
-            <span className="text-[10px] text-slate-400">
+            <span className="text-[10px] font-medium text-stone-600">
               ({recommendation.competitionVendorCount} thelas)
             </span>
           </div>
@@ -135,20 +135,20 @@ export const RecommendationHero: React.FC<RecommendationHeroProps> = ({
         {/* Signal 4: Mandi Stability */}
         <div
           onClick={onOpenStabilityAudit}
-          className="bg-slate-900/70 p-3 rounded-2xl border border-white/5 hover:border-mandi-500/40 cursor-pointer transition group"
+          className="bg-khaki-100/90 p-3 rounded-2xl border border-khaki-300 hover:border-mandi-500 cursor-pointer transition group shadow-sm"
         >
-          <div className="flex items-center justify-between text-xs text-indigo-400 font-semibold mb-1">
+          <div className="flex items-center justify-between text-xs text-stone-700 font-bold mb-1">
             <span className="flex items-center gap-1.5">
-              <ShieldCheck className="w-3.5 h-3.5" />
+              <ShieldCheck className="w-3.5 h-3.5 text-mandi-600" />
               <span>{t.stability}</span>
             </span>
-            <Info className="w-3 h-3 text-slate-500 group-hover:text-mandi-400" />
+            <Info className="w-3 h-3 text-stone-400 group-hover:text-mandi-600" />
           </div>
           <div className="flex items-baseline gap-1">
-            <span className="text-base sm:text-lg font-black text-white">
+            <span className="text-base sm:text-lg font-black text-stone-900">
               {recommendation.stabilityScore}
             </span>
-            <span className="text-[10px] uppercase font-bold text-emerald-400">
+            <span className="text-[10px] uppercase font-extrabold text-mandi-700">
               {recommendation.stabilityLevel}
             </span>
           </div>
@@ -156,27 +156,27 @@ export const RecommendationHero: React.FC<RecommendationHeroProps> = ({
       </div>
 
       {/* Action Bar */}
-      <div className="flex flex-wrap items-center justify-between gap-2.5 pt-3 border-t border-white/10">
+      <div className="flex flex-wrap items-center justify-between gap-2.5 pt-3 border-t border-khaki-300">
         <div className="flex items-center gap-2">
           {/* Audio Synthesizer */}
           <button
             onClick={handleSpeak}
             className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-bold transition-all ${
               isSpeaking
-                ? 'bg-rose-500/20 text-rose-300 border border-rose-500/40 animate-pulse'
-                : 'bg-slate-800/80 hover:bg-slate-800 text-slate-200 border border-white/10'
+                ? 'bg-chilli-100 text-chilli-700 border border-chilli-400 animate-pulse'
+                : 'bg-khaki-200 hover:bg-khaki-300 text-stone-800 border border-khaki-300'
             }`}
           >
-            {isSpeaking ? <VolumeX className="w-4 h-4 text-rose-400" /> : <Volume2 className="w-4 h-4 text-mandi-400" />}
+            {isSpeaking ? <VolumeX className="w-4 h-4 text-chilli-600" /> : <Volume2 className="w-4 h-4 text-mandi-600" />}
             <span>{isSpeaking ? 'Stop Audio' : t.listenVoice}</span>
           </button>
 
           {/* Stability Audit Deep Dive Trigger */}
           <button
             onClick={onOpenStabilityAudit}
-            className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold text-slate-300 bg-slate-900/60 hover:bg-slate-800/80 border border-white/5 transition"
+            className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold text-stone-800 bg-khaki-200/80 hover:bg-khaki-300 border border-khaki-300 transition"
           >
-            <ShieldCheck className="w-3.5 h-3.5 text-mandi-400" />
+            <ShieldCheck className="w-3.5 h-3.5 text-mandi-600" />
             <span className="hidden sm:inline">Check Risk & Rules</span>
           </button>
         </div>
@@ -184,7 +184,7 @@ export const RecommendationHero: React.FC<RecommendationHeroProps> = ({
         {/* Primary View Route Navigation */}
         <button
           onClick={onViewRoute}
-          className="flex items-center gap-2 px-5 py-2 rounded-xl bg-gradient-to-r from-mandi-500 to-emerald-600 hover:from-mandi-400 hover:to-emerald-500 text-slate-950 font-black text-xs shadow-lg shadow-mandi-500/30 transition transform active:scale-95"
+          className="flex items-center gap-2 px-5 py-2 rounded-xl bg-mandi-500 hover:bg-mandi-600 text-white font-black text-xs shadow-md transition transform active:scale-95"
         >
           <Navigation className="w-3.5 h-3.5" />
           <span>{t.viewRoute}</span>

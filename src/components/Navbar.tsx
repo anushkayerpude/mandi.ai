@@ -1,5 +1,5 @@
 import React from 'react';
-import { ShoppingBag, Landmark, Volume2, Globe, ShieldCheck, Sparkles } from 'lucide-react';
+import { ShoppingBag, Landmark, Globe } from 'lucide-react';
 import { AppMode, Language } from '../types';
 import { getTranslation } from '../utils/i18n';
 
@@ -19,23 +19,23 @@ export const Navbar: React.FC<NavbarProps> = ({
   const t = getTranslation(lang);
 
   return (
-    <header className="sticky top-0 z-50 glass-panel border-b border-white/10 px-4 py-2.5 sm:px-6">
+    <header className="sticky top-0 z-50 bg-khaki-100/95 backdrop-blur-md border-b border-khaki-300/80 px-4 py-2.5 sm:px-6 shadow-sm">
       <div className="max-w-7xl mx-auto flex items-center justify-between gap-2">
         {/* Brand Logo & Tagline */}
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-mandi-500 to-emerald-700 flex items-center justify-center shadow-lg shadow-mandi-500/25 border border-mandi-400/40">
+          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-mandi-500 to-mandi-700 flex items-center justify-center shadow-md shadow-mandi-500/20 border border-mandi-400/30">
             <span className="text-xl select-none">🥬</span>
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <h1 className="text-xl sm:text-2xl font-black tracking-tight text-white flex items-center gap-1.5">
-                Mandi<span className="text-mandi-400">.ai</span>
+              <h1 className="text-xl sm:text-2xl font-black tracking-tight text-stone-900 flex items-center gap-1.5">
+                Mandi<span className="text-mandi-500">.ai</span>
               </h1>
-              <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-mandi-500/20 text-mandi-300 border border-mandi-500/30">
+              <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-khaki-200 text-stone-800 border border-khaki-300">
                 Ahmedabad
               </span>
             </div>
-            <p className="text-xs text-slate-400 hidden sm:block">
+            <p className="text-xs text-stone-600 hidden sm:block">
               {t.tagline}
             </p>
           </div>
@@ -44,13 +44,13 @@ export const Navbar: React.FC<NavbarProps> = ({
         {/* Action Controls: Mode Switch & Language Picker */}
         <div className="flex items-center gap-2 sm:gap-3">
           {/* Persona Switcher (Vendor vs Municipal) */}
-          <div className="flex items-center bg-slate-900/90 p-1 rounded-xl border border-slate-700/60 shadow-inner">
+          <div className="flex items-center bg-khaki-200/90 p-1 rounded-xl border border-khaki-300 shadow-inner">
             <button
               onClick={() => onModeChange('vendor')}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all duration-200 ${
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all duration-200 ${
                 mode === 'vendor'
-                  ? 'bg-gradient-to-r from-mandi-600 to-mandi-500 text-white shadow-md shadow-mandi-600/30'
-                  : 'text-slate-400 hover:text-slate-200'
+                  ? 'bg-mandi-500 text-white shadow-sm'
+                  : 'text-stone-700 hover:text-stone-950'
               }`}
             >
               <ShoppingBag className="w-3.5 h-3.5" />
@@ -58,10 +58,10 @@ export const Navbar: React.FC<NavbarProps> = ({
             </button>
             <button
               onClick={() => onModeChange('municipal')}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all duration-200 ${
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all duration-200 ${
                 mode === 'municipal'
-                  ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-md shadow-blue-600/30'
-                  : 'text-slate-400 hover:text-slate-200'
+                  ? 'bg-blue-700 text-white shadow-sm'
+                  : 'text-stone-700 hover:text-stone-950'
               }`}
             >
               <Landmark className="w-3.5 h-3.5" />
@@ -70,17 +70,17 @@ export const Navbar: React.FC<NavbarProps> = ({
           </div>
 
           {/* Language Selector */}
-          <div className="relative flex items-center bg-slate-900/90 rounded-xl border border-slate-700/60 p-1">
-            <Globe className="w-3.5 h-3.5 text-slate-400 ml-1.5 mr-1" />
+          <div className="relative flex items-center bg-khaki-200/90 rounded-xl border border-khaki-300 p-1">
+            <Globe className="w-3.5 h-3.5 text-stone-600 ml-1.5 mr-1" />
             <select
               value={lang}
               onChange={(e) => onLangChange(e.target.value as Language)}
               aria-label="Select language"
-              className="bg-transparent text-xs text-slate-200 font-medium py-1 pr-2 outline-none cursor-pointer"
+              className="bg-transparent text-xs text-stone-800 font-bold py-1 pr-2 outline-none cursor-pointer"
             >
-              <option value="en" className="bg-slate-900 text-white">English</option>
-              <option value="gu" className="bg-slate-900 text-white">ગુજરાતી</option>
-              <option value="hi" className="bg-slate-900 text-white">हिन्दी</option>
+              <option value="en">English</option>
+              <option value="gu">ગુજરાતી</option>
+              <option value="hi">हिन्दी</option>
             </select>
           </div>
         </div>

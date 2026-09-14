@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import L from 'leaflet';
-import { WardLocation, LocationRecommendation, ActiveThela, VendingZone } from '../../types';
+import { WardLocation, LocationRecommendation, ActiveThela } from '../../types';
 import { AMC_VENDING_ZONES } from '../../data/vendingZones';
 import { SAMPLE_ACTIVE_THELAS } from '../../data/sampleVendors';
 import { generateThelaRoute } from '../../utils/geo';
@@ -41,7 +41,7 @@ export const AhmedabadMap: React.FC<AhmedabadMapProps> = ({
     setLayers((prev) => ({ ...prev, [layerKey]: !prev[layerKey] }));
   };
 
-  // 1. Initialize Map
+  // 1. Initialize Map with Clean Light Tiles
   useEffect(() => {
     if (!mapContainerRef.current || mapInstanceRef.current) return;
 
@@ -52,8 +52,8 @@ export const AhmedabadMap: React.FC<AhmedabadMapProps> = ({
       zoomControl: false,
     });
 
-    // Dark sleek CartoDB tile layer
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+    // Clean CartoDB Positron Light Tiles
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
       attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
       maxZoom: 18,
       subdomains: 'abcd',
@@ -78,55 +78,51 @@ export const AhmedabadMap: React.FC<AhmedabadMapProps> = ({
 
     group.clearLayers();
 
-    // Map recommendation score dictionary
-    const oppMap = new Map<string, number>();
-    recommendations.forEach((r) => oppMap.set(r.location.id, r.opportunityScore));
-
     // A. Opportunity Heatmap & Ward Polygons
     if (layers.showHeatmap) {
       recommendations.forEach((rec) => {
         const score = rec.opportunityScore;
-        let color = '#10b981'; // Green
-        let fillColor = '#059669';
+        let color = '#2d6a4f'; // Earthy Green
+        let fillColor = '#52b788';
         if (score < 65) {
-          color = '#ef4444'; // Red
-          fillColor = '#dc2626';
+          color = '#dc2626'; // Red
+          fillColor = '#f87171';
         } else if (score < 80) {
-          color = '#f59e0b'; // Yellow / Amber
-          fillColor = '#d97706';
+          color = '#d97706'; // Amber / Terracotta
+          fillColor = '#fbbf24';
         }
 
         const isSelected = selectedLocation?.location.id === rec.location.id;
 
         const polygon = L.polygon(rec.location.bounds, {
-          color: isSelected ? '#34d399' : color,
-          weight: isSelected ? 3 : 1.5,
+          color: isSelected ? '#1b4332' : color,
+          weight: isSelected ? 3.5 : 1.5,
           fillColor,
-          fillOpacity: isSelected ? 0.35 : 0.18,
+          fillOpacity: isSelected ? 0.45 : 0.22,
           dashArray: isSelected ? undefined : '4, 4',
         });
 
         polygon.bindPopup(`
           <div style="font-family: Outfit, sans-serif; min-width: 180px;">
-            <div style="font-size: 14px; font-weight: bold; color: #fff; margin-bottom: 2px;">
+            <div style="font-size: 14px; font-weight: bold; color: #1c1917; margin-bottom: 2px;">
               📍 ${rec.location.name} (${rec.location.nameGu})
             </div>
-            <div style="font-size: 11px; color: #94a3b8; margin-bottom: 6px;">
+            <div style="font-size: 11px; color: #78716c; margin-bottom: 6px;">
               ${rec.location.zone} Zone • Ahmedabad
             </div>
             <div style="display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 4px;">
-              <span style="color: #cbd5e1;">Opportunity:</span>
-              <strong style="color: ${color};">${rec.opportunityScore}/100</strong>
+              <span style="color: #44403c;">Opportunity:</span>
+              <strong style="color: ${color}; font-weight: 800;">${rec.opportunityScore}/100</strong>
             </div>
             <div style="display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 4px;">
-              <span style="color: #cbd5e1;">Demand:</span>
-              <strong style="color: #6ee7b7;">${rec.demandScore}/100</strong>
+              <span style="color: #44403c;">Demand:</span>
+              <strong style="color: #2d6a4f;">${rec.demandScore}/100</strong>
             </div>
             <div style="display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 6px;">
-              <span style="color: #cbd5e1;">Stability:</span>
-              <strong style="color: #38bdf8;">${rec.stabilityScore}/100</strong>
+              <span style="color: #44403c;">Stability:</span>
+              <strong style="color: #0369a1;">${rec.stabilityScore}/100</strong>
             </div>
-            <div style="font-size: 11px; color: #fbbf24; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 4px;">
+            <div style="font-size: 11px; color: #b45309; border-top: 1px solid #e7e5e4; padding-top: 4px; font-weight: 600;">
               ⏰ Peak: ${rec.bestSellingWindow}
             </div>
           </div>
@@ -143,19 +139,19 @@ export const AhmedabadMap: React.FC<AhmedabadMapProps> = ({
           className: 'custom-ward-badge',
           html: `
             <div style="
-              background: rgba(15, 23, 42, 0.9);
-              border: 1px solid ${color};
-              color: ${color};
-              padding: 2px 7px;
+              background: #ffffff;
+              border: 1.5px solid ${color};
+              color: #1c1917;
+              padding: 2px 8px;
               border-radius: 9999px;
               font-size: 11px;
-              font-weight: 700;
-              box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+              font-weight: 800;
+              box-shadow: 0 3px 8px rgba(60, 50, 35, 0.16);
               white-space: nowrap;
               transform: translate(-50%, -50%);
               cursor: pointer;
             ">
-              ${rec.location.name} • ${rec.opportunityScore}
+              ${rec.location.name} • <span style="color:${color};">${rec.opportunityScore}</span>
             </div>
           `,
           iconSize: [0, 0],
@@ -170,13 +166,13 @@ export const AhmedabadMap: React.FC<AhmedabadMapProps> = ({
     // B. AMC Vending Zones
     if (layers.showVendingZones) {
       AMC_VENDING_ZONES.forEach((vz) => {
-        let vzColor = '#10b981';
+        let vzColor = '#2d6a4f';
         let label = '🟢 AMC Vending Zone';
         if (vz.type === 'RESTRICTED_AMBER') {
-          vzColor = '#f59e0b';
+          vzColor = '#d97706';
           label = '🟡 Time Restricted';
         } else if (vz.type === 'NO_VENDING') {
-          vzColor = '#ef4444';
+          vzColor = '#dc2626';
           label = '🔴 STRICT NO-VENDING';
         }
 
@@ -184,7 +180,7 @@ export const AhmedabadMap: React.FC<AhmedabadMapProps> = ({
           color: vzColor,
           weight: 2,
           fillColor: vzColor,
-          fillOpacity: 0.28,
+          fillOpacity: 0.25,
         });
 
         vzPoly.bindPopup(`
@@ -192,13 +188,13 @@ export const AhmedabadMap: React.FC<AhmedabadMapProps> = ({
             <div style="font-size: 13px; font-weight: bold; color: ${vzColor}; margin-bottom: 2px;">
               ${label}
             </div>
-            <div style="font-size: 12px; font-weight: 600; color: #fff; margin-bottom: 4px;">
+            <div style="font-size: 12px; font-weight: 700; color: #1c1917; margin-bottom: 4px;">
               ${vz.name}
             </div>
-            <div style="font-size: 11px; color: #cbd5e1; margin-bottom: 4px;">
-              Capacity: ${vz.currentOccupancy}/${vz.capacityThelas} Thelas
+            <div style="font-size: 11px; color: #44403c; margin-bottom: 4px;">
+              Capacity: <strong>${vz.currentOccupancy}/${vz.capacityThelas} Thelas</strong>
             </div>
-            <div style="font-size: 10px; color: #94a3b8; font-style: italic;">
+            <div style="font-size: 10px; color: #78716c; font-style: italic;">
               ${vz.rules}
             </div>
           </div>
@@ -220,31 +216,31 @@ export const AhmedabadMap: React.FC<AhmedabadMapProps> = ({
           className: 'active-thela-pin',
           html: `
             <div style="
-              width: 24px;
-              height: 24px;
-              background: rgba(30, 41, 59, 0.95);
-              border: 1px solid #fbbf24;
+              width: 26px;
+              height: 26px;
+              background: #ffffff;
+              border: 1.5px solid #d97706;
               border-radius: 50%;
               display: flex;
               align-items: center;
               justify-content: center;
-              font-size: 12px;
-              box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+              font-size: 13px;
+              box-shadow: 0 2px 6px rgba(0,0,0,0.18);
             " title="${thela.vendorName} (${thela.category})">
               ${iconEmoji}
             </div>
           `,
-          iconSize: [24, 24],
-          iconAnchor: [12, 12],
+          iconSize: [26, 26],
+          iconAnchor: [13, 13],
         });
 
         const marker = L.marker([thela.lat, thela.lng], { icon: thelaIcon });
         marker.bindPopup(`
           <div style="font-family: Outfit, sans-serif;">
-            <div style="font-size: 13px; font-weight: bold; color: #fff;">${thela.vendorName}</div>
-            <div style="font-size: 11px; color: #fbbf24; text-transform: capitalize;">${thela.category} Thela</div>
-            <div style="font-size: 11px; color: #94a3b8;">Active since: ${thela.activeSince}</div>
-            <div style="font-size: 10px; color: #cbd5e1; margin-top: 4px;">Carrying: ${thela.products.join(', ')}</div>
+            <div style="font-size: 13px; font-weight: bold; color: #1c1917;">${thela.vendorName}</div>
+            <div style="font-size: 11px; color: #b45309; text-transform: capitalize; font-weight: 600;">${thela.category} Thela</div>
+            <div style="font-size: 11px; color: #78716c;">Active since: ${thela.activeSince}</div>
+            <div style="font-size: 10px; color: #44403c; margin-top: 4px;">Carrying: ${thela.products.join(', ')}</div>
           </div>
         `);
         group.addLayer(marker);
@@ -266,7 +262,7 @@ export const AhmedabadMap: React.FC<AhmedabadMapProps> = ({
           justify-content: center;
           color: white;
           font-size: 14px;
-          box-shadow: 0 0 16px rgba(2, 132, 199, 0.8);
+          box-shadow: 0 0 12px rgba(2, 132, 199, 0.6);
         ">
           📍
         </div>
@@ -275,7 +271,7 @@ export const AhmedabadMap: React.FC<AhmedabadMapProps> = ({
       iconAnchor: [16, 16],
     });
     const homeMarker = L.marker([vendorStartLat, vendorStartLng], { icon: vendorHomeIcon });
-    homeMarker.bindPopup('<strong style="color:#38bdf8;">Your Current Depot / Pushcart Location</strong>');
+    homeMarker.bindPopup('<strong style="color:#0369a1;">Your Current Depot / Pushcart Location</strong>');
     group.addLayer(homeMarker);
 
     // E. Selected Target Destination Pin with Pulse Ring
@@ -286,7 +282,7 @@ export const AhmedabadMap: React.FC<AhmedabadMapProps> = ({
           <div class="custom-pin-pulse" style="
             width: 36px;
             height: 36px;
-            background: #10b981;
+            background: #2d6a4f;
             border: 3px solid #ffffff;
             border-radius: 50%;
             display: flex;
@@ -294,7 +290,7 @@ export const AhmedabadMap: React.FC<AhmedabadMapProps> = ({
             justify-content: center;
             color: white;
             font-size: 16px;
-            box-shadow: 0 0 20px rgba(16, 185, 129, 0.9);
+            box-shadow: 0 0 16px rgba(45, 106, 79, 0.7);
           ">
             ⭐
           </div>
@@ -318,7 +314,7 @@ export const AhmedabadMap: React.FC<AhmedabadMapProps> = ({
         );
 
         const routeLine = L.polyline(routePoints, {
-          color: '#34d399',
+          color: '#2d6a4f',
           weight: 4,
           dashArray: '8, 8',
           opacity: 0.9,
@@ -349,7 +345,7 @@ export const AhmedabadMap: React.FC<AhmedabadMapProps> = ({
   }, [selectedLocation, isNavigating]);
 
   return (
-    <div className="relative w-full h-full min-h-[420px] rounded-3xl overflow-hidden border border-white/10 shadow-2xl bg-slateDark-900">
+    <div className="relative w-full h-full min-h-[420px] rounded-3xl overflow-hidden border border-khaki-300 shadow-md bg-khaki-150">
       <div ref={mapContainerRef} className="w-full h-full" />
 
       {/* Layer Toggles */}

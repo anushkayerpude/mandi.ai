@@ -15,70 +15,70 @@ interface MapLayerControlsProps {
 
 export const MapLayerControls: React.FC<MapLayerControlsProps> = ({ layers, onToggle }) => {
   return (
-    <div className="absolute top-4 right-4 z-[400] glass-panel p-2 rounded-2xl shadow-xl flex flex-col gap-1.5 border border-white/10 text-xs">
-      <div className="flex items-center gap-1.5 px-2 py-1 text-slate-400 font-semibold uppercase tracking-wider text-[10px]">
-        <Layers className="w-3.5 h-3.5 text-mandi-400" />
+    <div className="absolute top-4 right-4 z-[400] bg-khaki-50/95 backdrop-blur-md p-2 rounded-2xl shadow-md flex flex-col gap-1.5 border border-khaki-300 text-xs">
+      <div className="flex items-center gap-1.5 px-2 py-1 text-stone-600 font-extrabold uppercase tracking-wider text-[10px]">
+        <Layers className="w-3.5 h-3.5 text-mandi-600" />
         <span>Map Layers</span>
       </div>
 
       <button
         onClick={() => onToggle('showHeatmap')}
-        className={`flex items-center justify-between gap-3 px-2.5 py-1.5 rounded-xl font-medium transition-all ${
+        className={`flex items-center justify-between gap-3 px-2.5 py-1.5 rounded-xl font-bold transition-all ${
           layers.showHeatmap
-            ? 'bg-mandi-500/20 text-mandi-300 border border-mandi-500/30'
-            : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/40'
+            ? 'bg-khaki-200 text-stone-900 border border-khaki-400 shadow-sm'
+            : 'text-stone-700 hover:text-stone-900 hover:bg-khaki-150'
         }`}
       >
         <span className="flex items-center gap-2">
-          <Flame className="w-3.5 h-3.5 text-orange-400" />
+          <Flame className="w-3.5 h-3.5 text-amber-700" />
           Opportunity Heatmap
         </span>
-        <span className={`w-2 h-2 rounded-full ${layers.showHeatmap ? 'bg-mandi-400' : 'bg-slate-600'}`} />
+        <span className={`w-2 h-2 rounded-full ${layers.showHeatmap ? 'bg-mandi-600' : 'bg-khaki-400'}`} />
       </button>
 
       <button
         onClick={() => onToggle('showThelas')}
-        className={`flex items-center justify-between gap-3 px-2.5 py-1.5 rounded-xl font-medium transition-all ${
+        className={`flex items-center justify-between gap-3 px-2.5 py-1.5 rounded-xl font-bold transition-all ${
           layers.showThelas
-            ? 'bg-amber-500/20 text-amber-300 border border-amber-500/30'
-            : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/40'
+            ? 'bg-khaki-200 text-stone-900 border border-khaki-400 shadow-sm'
+            : 'text-stone-700 hover:text-stone-900 hover:bg-khaki-150'
         }`}
       >
         <span className="flex items-center gap-2">
-          <Users className="w-3.5 h-3.5 text-yellow-400" />
+          <Users className="w-3.5 h-3.5 text-amber-700" />
           Competing Thelas
         </span>
-        <span className={`w-2 h-2 rounded-full ${layers.showThelas ? 'bg-amber-400' : 'bg-slate-600'}`} />
+        <span className={`w-2 h-2 rounded-full ${layers.showThelas ? 'bg-amber-600' : 'bg-khaki-400'}`} />
       </button>
 
       <button
         onClick={() => onToggle('showVendingZones')}
-        className={`flex items-center justify-between gap-3 px-2.5 py-1.5 rounded-xl font-medium transition-all ${
+        className={`flex items-center justify-between gap-3 px-2.5 py-1.5 rounded-xl font-bold transition-all ${
           layers.showVendingZones
-            ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30'
-            : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/40'
+            ? 'bg-khaki-200 text-stone-900 border border-khaki-400 shadow-sm'
+            : 'text-stone-700 hover:text-stone-900 hover:bg-khaki-150'
         }`}
       >
         <span className="flex items-center gap-2">
-          <ShieldAlert className="w-3.5 h-3.5 text-emerald-400" />
+          <ShieldAlert className="w-3.5 h-3.5 text-mandi-600" />
           AMC Vending Zones
         </span>
-        <span className={`w-2 h-2 rounded-full ${layers.showVendingZones ? 'bg-emerald-400' : 'bg-slate-600'}`} />
+        <span className={`w-2 h-2 rounded-full ${layers.showVendingZones ? 'bg-mandi-600' : 'bg-khaki-400'}`} />
       </button>
 
       <button
         onClick={() => onToggle('showPois')}
-        className={`flex items-center justify-between gap-3 px-2.5 py-1.5 rounded-xl font-medium transition-all ${
+        className={`flex items-center justify-between gap-3 px-2.5 py-1.5 rounded-xl font-bold transition-all ${
           layers.showPois
-            ? 'bg-blue-500/20 text-blue-300 border border-blue-500/30'
-            : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/40'
+            ? 'bg-khaki-200 text-stone-900 border border-khaki-400 shadow-sm'
+            : 'text-stone-700 hover:text-stone-900 hover:bg-khaki-150'
         }`}
       >
         <span className="flex items-center gap-2">
-          <MapPin className="w-3.5 h-3.5 text-blue-400" />
+          <MapPin className="w-3.5 h-3.5 text-blue-700" />
           Transit & Markets
         </span>
-        <span className={`w-2 h-2 rounded-full ${layers.showPois ? 'bg-blue-400' : 'bg-slate-600'}`} />
+        <span className={`w-2 h-2 rounded-full ${layers.showPois ? 'bg-blue-600' : 'bg-khaki-400'}`} />
       </button>
     </div>
   );

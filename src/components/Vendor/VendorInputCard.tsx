@@ -1,5 +1,5 @@
 import React from 'react';
-import { Sparkles, IndianRupee, MapPin, Clock, Search, Sliders } from 'lucide-react';
+import { Sparkles, IndianRupee, MapPin, Clock, Search } from 'lucide-react';
 import { VendorQuery, ProductCategory, Language } from '../../types';
 import { getTranslation } from '../../utils/i18n';
 
@@ -29,18 +29,15 @@ export const VendorInputCard: React.FC<VendorInputCardProps> = ({
   ];
 
   return (
-    <div className="glass-panel p-5 rounded-3xl border border-white/10 shadow-2xl relative overflow-hidden">
-      {/* Decorative gradient orb */}
-      <div className="absolute -top-16 -right-16 w-36 h-36 bg-mandi-500/15 rounded-full blur-2xl pointer-events-none" />
-
+    <div className="glass-panel p-5 rounded-3xl border border-khaki-300 shadow-sm relative overflow-hidden">
       {/* Header Greeting */}
       <div className="flex items-center justify-between mb-4">
         <div>
-          <span className="text-xs font-semibold text-mandi-400 flex items-center gap-1">
-            <Sparkles className="w-3.5 h-3.5" />
+          <span className="text-xs font-bold text-mandi-600 flex items-center gap-1">
+            <Sparkles className="w-3.5 h-3.5 text-mandi-500" />
             {t.goodMorning}
           </span>
-          <h2 className="text-lg font-bold text-white tracking-tight">
+          <h2 className="text-lg font-extrabold text-stone-900 tracking-tight">
             {t.whereToSellPrompt}
           </h2>
         </div>
@@ -48,7 +45,7 @@ export const VendorInputCard: React.FC<VendorInputCardProps> = ({
         <button
           onClick={onSearch}
           disabled={isLoading}
-          className="hidden sm:flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-mandi-500 to-emerald-600 hover:from-mandi-400 hover:to-emerald-500 text-white font-bold text-xs shadow-lg shadow-mandi-500/25 transition-all transform active:scale-95 disabled:opacity-50"
+          className="hidden sm:flex items-center gap-2 px-4 py-2 rounded-xl bg-mandi-500 hover:bg-mandi-600 text-white font-bold text-xs shadow-sm transition-all transform active:scale-95 disabled:opacity-50"
         >
           <Search className="w-3.5 h-3.5" />
           <span>{t.findBestLocation}</span>
@@ -59,11 +56,11 @@ export const VendorInputCard: React.FC<VendorInputCardProps> = ({
         {/* 1. Working Capital / Budget */}
         <div>
           <div className="flex items-center justify-between text-xs mb-1.5">
-            <label className="text-slate-300 font-medium flex items-center gap-1.5">
-              <IndianRupee className="w-3.5 h-3.5 text-mandi-400" />
+            <label className="text-stone-700 font-bold flex items-center gap-1.5">
+              <IndianRupee className="w-3.5 h-3.5 text-mandi-600" />
               <span>{t.budgetLabel}</span>
             </label>
-            <span className="text-base font-extrabold text-emerald-400">
+            <span className="text-base font-black text-mandi-600">
               ₹{query.budget.toLocaleString('en-IN')}
             </span>
           </div>
@@ -76,8 +73,8 @@ export const VendorInputCard: React.FC<VendorInputCardProps> = ({
                 onClick={() => onChange({ ...query, budget: amount })}
                 className={`py-1.5 rounded-xl text-xs font-bold transition-all ${
                   query.budget === amount
-                    ? 'bg-mandi-500 text-slate-950 shadow-md shadow-mandi-500/30'
-                    : 'bg-slate-800/70 text-slate-300 hover:bg-slate-800 border border-white/5'
+                    ? 'bg-mandi-500 text-white shadow-sm'
+                    : 'bg-khaki-150 text-stone-800 hover:bg-khaki-200 border border-khaki-300'
                 }`}
               >
                 ₹{amount}
@@ -88,7 +85,7 @@ export const VendorInputCard: React.FC<VendorInputCardProps> = ({
 
         {/* 2. Commodity Categories */}
         <div>
-          <label className="block text-xs font-medium text-slate-300 mb-1.5">
+          <label className="block text-xs font-bold text-stone-700 mb-1.5">
             {t.whatDoYouSell}
           </label>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
@@ -97,10 +94,10 @@ export const VendorInputCard: React.FC<VendorInputCardProps> = ({
                 key={cat.key}
                 type="button"
                 onClick={() => onChange({ ...query, category: cat.key })}
-                className={`flex items-center gap-2 p-2 rounded-xl text-xs font-semibold transition-all border ${
+                className={`flex items-center gap-2 p-2 rounded-xl text-xs font-bold transition-all border ${
                   query.category === cat.key
-                    ? 'bg-gradient-to-br from-mandi-500/20 to-emerald-500/10 border-mandi-500/50 text-emerald-300 shadow-sm'
-                    : 'bg-slate-900/60 border-white/5 text-slate-400 hover:text-slate-200 hover:bg-slate-800/50'
+                    ? 'bg-khaki-200 border-mandi-500 text-mandi-700 shadow-sm'
+                    : 'bg-khaki-100/80 border-khaki-300 text-stone-700 hover:text-stone-900 hover:bg-khaki-150'
                 }`}
               >
                 <span className="text-base">{cat.icon}</span>
@@ -113,13 +110,13 @@ export const VendorInputCard: React.FC<VendorInputCardProps> = ({
         {/* 3. Distance and Selling Duration */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
           {/* Max Distance Slider */}
-          <div className="bg-slate-900/60 p-2.5 rounded-2xl border border-white/5">
+          <div className="bg-khaki-150/70 p-2.5 rounded-2xl border border-khaki-300">
             <div className="flex items-center justify-between text-xs mb-1">
-              <span className="text-slate-400 flex items-center gap-1">
-                <MapPin className="w-3.5 h-3.5 text-blue-400" />
+              <span className="text-stone-700 font-semibold flex items-center gap-1">
+                <MapPin className="w-3.5 h-3.5 text-blue-700" />
                 {t.maxDistance}
               </span>
-              <span className="font-bold text-blue-400">{query.maxDistanceKm} km</span>
+              <span className="font-extrabold text-blue-800">{query.maxDistanceKm} km</span>
             </div>
             <input
               type="range"
@@ -128,18 +125,18 @@ export const VendorInputCard: React.FC<VendorInputCardProps> = ({
               step="1"
               value={query.maxDistanceKm}
               onChange={(e) => onChange({ ...query, maxDistanceKm: Number(e.target.value) })}
-              className="w-full accent-blue-500 h-1.5 bg-slate-700 rounded-lg cursor-pointer"
+              className="w-full accent-blue-700 h-1.5 bg-khaki-300 rounded-lg cursor-pointer"
             />
           </div>
 
           {/* Selling Duration */}
-          <div className="bg-slate-900/60 p-2.5 rounded-2xl border border-white/5">
+          <div className="bg-khaki-150/70 p-2.5 rounded-2xl border border-khaki-300">
             <div className="flex items-center justify-between text-xs mb-1">
-              <span className="text-slate-400 flex items-center gap-1">
-                <Clock className="w-3.5 h-3.5 text-amber-400" />
+              <span className="text-stone-700 font-semibold flex items-center gap-1">
+                <Clock className="w-3.5 h-3.5 text-amber-700" />
                 Duration
               </span>
-              <span className="font-bold text-amber-400">{query.durationHours} hours</span>
+              <span className="font-extrabold text-amber-800">{query.durationHours} hours</span>
             </div>
             <input
               type="range"
@@ -148,7 +145,7 @@ export const VendorInputCard: React.FC<VendorInputCardProps> = ({
               step="1"
               value={query.durationHours}
               onChange={(e) => onChange({ ...query, durationHours: Number(e.target.value) })}
-              className="w-full accent-amber-500 h-1.5 bg-slate-700 rounded-lg cursor-pointer"
+              className="w-full accent-amber-700 h-1.5 bg-khaki-300 rounded-lg cursor-pointer"
             />
           </div>
         </div>
@@ -157,7 +154,7 @@ export const VendorInputCard: React.FC<VendorInputCardProps> = ({
         <button
           onClick={onSearch}
           disabled={isLoading}
-          className="w-full sm:hidden flex items-center justify-center gap-2 py-3 rounded-2xl bg-gradient-to-r from-mandi-500 to-emerald-600 hover:from-mandi-400 hover:to-emerald-500 text-slate-950 font-black text-sm shadow-xl shadow-mandi-500/30 transition-all transform active:scale-98 disabled:opacity-50"
+          className="w-full sm:hidden flex items-center justify-center gap-2 py-3 rounded-2xl bg-mandi-500 hover:bg-mandi-600 text-white font-black text-sm shadow-md transition-all transform active:scale-98 disabled:opacity-50"
         >
           <Search className="w-4 h-4" />
           <span>{t.findBestLocation}</span>

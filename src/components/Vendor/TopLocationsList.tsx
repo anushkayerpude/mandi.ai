@@ -1,5 +1,5 @@
 import React from 'react';
-import { MapPin, Navigation, TrendingUp, ShieldCheck, ChevronRight } from 'lucide-react';
+import { TrendingUp, ShieldCheck, ChevronRight } from 'lucide-react';
 import { LocationRecommendation, Language } from '../../types';
 import { getTranslation } from '../../utils/i18n';
 
@@ -20,13 +20,13 @@ export const TopLocationsList: React.FC<TopLocationsListProps> = ({
   const topList = recommendations.slice(0, 5);
 
   return (
-    <div className="glass-panel p-5 rounded-3xl border border-white/10 shadow-2xl">
+    <div className="glass-panel p-5 rounded-3xl border border-khaki-300 shadow-sm bg-khaki-50">
       <div className="flex items-center justify-between mb-3">
-        <h3 className="text-base font-bold text-white flex items-center gap-2">
+        <h3 className="text-base font-extrabold text-stone-900 flex items-center gap-2">
           <span>📍</span>
           <span>{t.topLocations}</span>
         </h3>
-        <span className="text-[11px] font-semibold text-slate-400">
+        <span className="text-[11px] font-bold text-stone-600">
           Ranked by Opportunity
         </span>
       </div>
@@ -42,8 +42,8 @@ export const TopLocationsList: React.FC<TopLocationsListProps> = ({
               onClick={() => onSelect(rec)}
               className={`p-3 rounded-2xl border transition-all cursor-pointer flex items-center justify-between gap-3 ${
                 isSelected
-                  ? 'bg-gradient-to-r from-mandi-500/20 to-emerald-500/10 border-mandi-500/50 shadow-md'
-                  : 'bg-slate-900/60 border-white/5 hover:bg-slate-800/60 hover:border-white/10'
+                  ? 'bg-khaki-200 border-mandi-500 shadow-sm'
+                  : 'bg-khaki-100/90 border-khaki-300 hover:bg-khaki-150'
               }`}
             >
               {/* Left: Rank badge & Ward details */}
@@ -51,12 +51,12 @@ export const TopLocationsList: React.FC<TopLocationsListProps> = ({
                 <div
                   className={`w-7 h-7 rounded-xl flex items-center justify-center text-xs font-black shrink-0 ${
                     index === 0
-                      ? 'bg-amber-400 text-slate-950 shadow-md shadow-amber-400/20'
+                      ? 'bg-amber-400 text-stone-950 shadow-sm'
                       : index === 1
-                      ? 'bg-slate-300 text-slate-950'
+                      ? 'bg-stone-300 text-stone-900'
                       : index === 2
-                      ? 'bg-amber-700 text-amber-100'
-                      : 'bg-slate-800 text-slate-400'
+                      ? 'bg-khaki-400 text-stone-900'
+                      : 'bg-khaki-300 text-stone-800'
                   }`}
                 >
                   #{index + 1}
@@ -64,17 +64,17 @@ export const TopLocationsList: React.FC<TopLocationsListProps> = ({
 
                 <div>
                   <div className="flex items-center gap-1.5">
-                    <h4 className="text-sm font-bold text-white">{locName}</h4>
-                    <span className="text-[10px] text-slate-400">({rec.distanceKm} km)</span>
+                    <h4 className="text-sm font-extrabold text-stone-900">{locName}</h4>
+                    <span className="text-[10px] text-stone-600 font-semibold">({rec.distanceKm} km)</span>
                   </div>
 
-                  <div className="flex items-center gap-3 text-[11px] text-slate-400 mt-0.5">
-                    <span className="flex items-center gap-1 text-emerald-400 font-medium">
+                  <div className="flex items-center gap-3 text-[11px] text-stone-600 mt-0.5 font-semibold">
+                    <span className="flex items-center gap-1 text-mandi-700">
                       <TrendingUp className="w-3 h-3" />
                       Demand: {rec.demandScore}
                     </span>
-                    <span className="flex items-center gap-1">
-                      <ShieldCheck className="w-3 h-3 text-sky-400" />
+                    <span className="flex items-center gap-1 text-blue-800">
+                      <ShieldCheck className="w-3 h-3" />
                       Stability: {rec.stabilityScore}
                     </span>
                   </div>
@@ -84,12 +84,12 @@ export const TopLocationsList: React.FC<TopLocationsListProps> = ({
               {/* Right: Opportunity score & Chevron */}
               <div className="flex items-center gap-2 text-right shrink-0">
                 <div>
-                  <div className="text-[10px] uppercase font-bold text-slate-400">Score</div>
-                  <div className="text-base font-black text-mandi-400 leading-none">
+                  <div className="text-[10px] uppercase font-bold text-stone-600">Score</div>
+                  <div className="text-base font-black text-mandi-700 leading-none">
                     {rec.opportunityScore}
                   </div>
                 </div>
-                <ChevronRight className={`w-4 h-4 transition-transform ${isSelected ? 'text-mandi-400 translate-x-0.5' : 'text-slate-600'}`} />
+                <ChevronRight className={`w-4 h-4 transition-transform ${isSelected ? 'text-mandi-600 translate-x-0.5' : 'text-stone-400'}`} />
               </div>
             </div>
           );
