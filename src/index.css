@@ -4,7 +4,9 @@
 
 @layer base {
   body {
-    @apply bg-khaki-100 text-stone-900 min-h-screen;
+    background-color: #f4efe6;
+    color: #1c1917;
+    min-height: 100vh;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   }
 }
