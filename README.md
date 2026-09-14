@@ -282,22 +282,6 @@ python -m uvicorn backend.main:app --reload --port 8000
 
 ---
 
-## 🧪 Hackathon Demo Scenario ("The 3-Minute Script")
-
-To demonstrate Mandi.ai in a competition or pitch:
-
-1. **The Scenario**: Introduce *"Rameshbhai"*, a street vendor near Maninagar with ₹2,000 working capital today.
-2. **Input**: Select ₹2,000 budget, "Vegetables", and 5 km max walking distance.
-3. **Execution**: Click **"FIND BEST LOCATION"**.
-4. **The Recommendation**: Watch the map zoom to **Isanpur** with an Opportunity Score of **91/100**, Demand: High, Competition: Low (3 thelas), and Stability: 88/100.
-5. **Inventory Guidance**: Show the Knapsack breakdown (Tomato ₹400, Potato ₹350, Onion ₹300...) with expected net profit of +₹1,500.
-6. **Voice Assist**: Click **"Listen / સાંભળો"** in Gujarati to play the audio guidance.
-7. **Turn-by-Turn Route**: Click **"VIEW ROUTE"** to display the handcart walking path on the map with a 24-minute ETA.
-8. **Feedback Loop**: Open **"Log Result"**, input ₹3,450 revenue, submit, and show the model accuracy flywheel boost (+4.2%).
-9. **B2G Mode**: Toggle to **"Municipal / AMC"** to show how urban planners use the same data to decongest Jamalpur and gazette new zones in Lambha.
-
----
-
 ## 💼 Business & Sustainability Model
 
 - **B2C (Vendors)**: **Freemium**. Basic location recommendations are 100% free. Advanced inventory optimization, seasonal price forecasts, and priority corridor alerts available for an affordable ₹49/month.
