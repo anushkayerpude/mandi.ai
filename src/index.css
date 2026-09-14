@@ -1,0 +1,94 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-[#070b13] text-slate-100 min-h-screen;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(15, 23, 40, 0.6);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(52, 211, 153, 0.25);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(52, 211, 153, 0.45);
+}
+
+/* Glassmorphism */
+.glass-panel {
+  background: rgba(15, 23, 42, 0.78);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-panel-subtle {
+  background: rgba(21, 29, 44, 0.55);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.glass-card-glow {
+  background: radial-gradient(circle at top left, rgba(16, 185, 129, 0.12), transparent 45%), rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(52, 211, 153, 0.2);
+}
+
+/* Leaflet map overrides */
+.leaflet-container {
+  width: 100%;
+  height: 100%;
+  background: #090d16 !important;
+  font-family: 'Outfit', sans-serif !important;
+}
+
+.leaflet-tile {
+  filter: brightness(0.72) invert(1) contrast(3.2) hue-rotate(205deg) saturate(0.28) !important;
+}
+
+.leaflet-popup-content-wrapper {
+  background: rgba(15, 23, 42, 0.95) !important;
+  backdrop-filter: blur(12px) !important;
+  color: #f8fafc !important;
+  border-radius: 14px !important;
+  border: 1px solid rgba(52, 211, 153, 0.3) !important;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.6), 0 8px 10px -6px rgba(0, 0, 0, 0.6) !important;
+  padding: 4px !important;
+}
+
+.leaflet-popup-tip {
+  background: rgba(15, 23, 42, 0.95) !important;
+  border: 1px solid rgba(52, 211, 153, 0.3) !important;
+}
+
+/* Pulse animation on markers */
+.custom-pin-pulse {
+  animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 14px rgba(16, 185, 129, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+  }
+}
