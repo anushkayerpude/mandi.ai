@@ -231,7 +231,7 @@ Street vendors in Ahmedabad have varying literacy levels. Mandi.ai provides:
 ## 🔄 Vendor Learning Loop (Data Flywheel)
 
 At the end of the day, the vendor takes 15 seconds to log:
-- **Actual Revenue** (e.g., ₹3,450)
+- **Actual Revenue** (e.g., ₹3,490)
 - **Unsold Produce** (e.g., 2 kg Tomato, 1 kg Potato)
 - **Customers Served** (~70)
 - **Spot Conditions** (Peaceful / Overcrowded / Police Warning)
