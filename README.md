@@ -211,7 +211,7 @@ Mandi.ai is pre-loaded with high-resolution geospatial datasets across 12 iconic
 
 ## 🏛️ Municipal Intelligence Suite (AMC / Urban Planners)
 
-Mandi.ai features a dedicated **B2G (Business-to-Government)** mode designed for municipal bodies like the **Ahmedabad Municipal Corporation (AMC)** and urban planners under the *Street Vendors (Protection of Livelihood and Regulation of Street Vending) Act*:
+Mandi.ai features a dedicated **B2G (Business-to-Government)** mode designed for municipal bodies like the **Ahmedabad Municipal Corporation (AMC)** and urban planners under *Street Vendors (Protection of Livelihood and Regulation of Street Vending) Act*:
 
 - **Decongestion Diagnostics**: Flags overcrowded bottleneck zones where pushcarts spill onto active BRTS bus lanes (e.g., Jamalpur Sardar Bridge, Kalupur Circle).
 - **Food Desert Identification**: Discovers underserved residential wards with rapid population growth but zero organized vegetable stalls (e.g., Lambha, South Bopal extension).
